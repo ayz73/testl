@@ -17,16 +17,27 @@ class Fraction():
         self.num = int(num / gcf(num, den))
         self.den = int(den / gcf(num, den))
 
-    def __add__(self, other_fraction):
-        new_num = self.num*other_fraction.den + other_fraction.num*self.den
-        new_den = self.den * other_fraction.den
+    def __add__(self, other):
+        new_num = self.num*other.den + other.num*self.den
+        new_den = self.den * other.den
+        return Fraction(new_num, new_den)
+
+    def __sub__(self, other):
+        new_num = self.num*other.den - other.num*self.den
+        new_den = self.den * other.den
+        return Fraction(new_num, new_den)
+
+    def __mul__(self, other):
+        new_num = self.num * other.num
+        new_den = self.den * other.den
         return Fraction(new_num, new_den)
     
     def __str__(self):
-        return "%s/%s" %(self.num, self.den)
+        return "%s/%s" % (self.num, self.den)
 
     def get_num(self):
         return self.num
     
     def get_den(self):
         return self.den
+

@@ -23,6 +23,31 @@ class fractions_test(unittest.TestCase):
         f_4 = Fraction(2, -5)
         self.assertEqual(str(f_3 + f_4), "-9/10")
 
+    def test_fractions_sub(self):
+        f_1 = Fraction(1, 2)
+        f_2 = Fraction(1, 4)
+        self.assertEqual(str(f_1 - f_2), "1/4")
+
+        f_2.den = 8
+        self.assertEqual(str(f_1 - f_2), "3/8")
+
+        f_3 = Fraction(-1, 2)
+        f_4 = Fraction(2, -5)
+        self.assertEqual(str(f_3 - f_4), "-1/10")
+
+    def test_fractions_mul(self):
+        f_1 = Fraction(1, 2)
+        f_2 = Fraction(1, 4)
+        self.assertEqual(str(f_1 * f_2), "1/8")
+
+        f_1.num = 5
+        f_2.den = 8
+        self.assertEqual(str(f_1 * f_2), "5/16")
+
+        f_3 = Fraction(-1, 2)
+        f_4 = Fraction(2, -5)
+        self.assertEqual(str(f_3 * f_4), "1/5")
+    
     def test_get_num(self):
         f_1 = Fraction(1, 5)
         f_2 = Fraction(3, 4)
