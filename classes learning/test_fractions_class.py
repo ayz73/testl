@@ -1,5 +1,13 @@
 import unittest
 from fractions_class import Fraction
+import fractions_class
+
+class fractions_class_test(unittest.TestCase):
+    def test_gcf(self):
+        self.assertEqual(fractions_class.gcf(78, 66), 6)
+        self.assertEqual(fractions_class.gcf(10, 0), 0)
+        self.assertEqual(fractions_class.gcf(-100, -5), -5)
+        self.assertEqual(fractions_class.gcf(100, -5), -5)
 
 class fractions_test(unittest.TestCase):
 
