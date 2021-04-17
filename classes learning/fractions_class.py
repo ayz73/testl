@@ -31,6 +31,11 @@ class Fraction():
         new_num = self.num * other.num
         new_den = self.den * other.den
         return Fraction(new_num, new_den)
+
+    def __truediv__(self, other):
+        new_num = self.num * other.den
+        new_den = self.den * other.num
+        return Fraction(new_num, new_den)
     
     def __str__(self):
         return "%s/%s" % (self.num, self.den)

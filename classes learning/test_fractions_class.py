@@ -48,6 +48,19 @@ class fractions_test(unittest.TestCase):
         f_4 = Fraction(2, -5)
         self.assertEqual(str(f_3 * f_4), "1/5")
     
+    def test_fractions_truediv(self):
+        f_1 = Fraction(1, 2)
+        f_2 = Fraction(1, 4)
+        self.assertEqual(str(f_1 / f_2), "2/1")
+
+        f_1.num = 5
+        f_2.den = 3
+        self.assertEqual(str(f_1 / f_2), "15/2")
+
+        f_3 = Fraction(-1, 2)
+        f_4 = Fraction(2, -5)
+        self.assertEqual(str(f_3 / f_4), "5/4")
+
     def test_get_num(self):
         f_1 = Fraction(1, 5)
         f_2 = Fraction(3, 4)
