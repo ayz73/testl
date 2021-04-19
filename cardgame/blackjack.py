@@ -1,3 +1,5 @@
+import random
+
 class Card():
     
     def __init__(self, suit, rank):
@@ -22,3 +24,24 @@ class Card():
             return "%s%s" % (self.suit, str(self.rank))
         else:
             return "%s%s" % (self.suit, self.face)
+
+    def __eq__(self, other):
+        return self.suit == other.suit and self.rank == other.rank
+
+
+class Deck():
+    
+    def __init__(self):
+        self.cards = []
+        for suit in ["S", "H", "C", "D"]:
+            for rank in range(1, 14):
+                self.cards.append(Card(suit, rank))
+        random.shuffle(self.cards)
+
+
+class Hand():
+    pass
+
+
+if __name__ == "__main__":
+    pass
