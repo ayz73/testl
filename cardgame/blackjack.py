@@ -5,10 +5,6 @@ class Card():
     def __init__(self, suit, rank):
 
         self.suit = suit
-        if self.suit == "H" or self.suit == "D":
-            self.colour = "red"
-        else:
-            self.colour = "black"
 
         COURT = ["J", "Q", "K"]
         self.rank = rank
@@ -36,11 +32,28 @@ class Deck():
         for suit in ["S", "H", "C", "D"]:
             for rank in range(1, 14):
                 self.cards.append(Card(suit, rank))
-        random.shuffle(self.cards)
+
+    # td: shuffle
+    
+    # td: hand out
+
 
 
 class Hand():
-    pass
+    
+    def __init__(self, cards):
+        self.cards = []
+        self.cards += cards
+    
+    def get_aces(self):
+        aces = 0
+        for card in self.cards:
+            if card.face == "A":
+                aces += 1
+        return aces
+        
+    def get_value(self):
+        pass
 
 
 if __name__ == "__main__":
