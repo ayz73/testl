@@ -43,8 +43,10 @@ class Deck():
     def shuffle(self):
         random.shuffle(self.cards)
     
-    # td: hand out
-
+    def hand_out(self, hand, amount):
+        for _ in range(amount):
+            card = self.cards.pop()
+            hand.add_card(card)
 
 
 class Hand():
@@ -52,6 +54,9 @@ class Hand():
     def __init__(self, cards):
         self.cards = []
         self.cards += cards
+
+    def add_card(self, card):
+        self.cards.append(card)
     
     def aces(self):
         aces = 0
