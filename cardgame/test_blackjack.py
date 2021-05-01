@@ -15,17 +15,26 @@ class deck_test(unittest.TestCase):
         self.assertTrue(Card("D", 1) in deck.cards)
     
 class hand_test(unittest.TestCase):
-    def test_get_aces(self):
+    def test_aces(self):
         cards_list = [Card("S", 1), Card("H", 11), Card("D", 1)]
         hand = Hand(cards_list)
-        self.assertEqual(hand.get_aces(), 2)
+        self.assertEqual(hand.aces(), 2)
         cards_list.append(Card("C", 1))
-        self.assertEqual(hand.get_aces(), 2)
+        self.assertEqual(hand.aces(), 2)
 
         hand_2 = Hand([])
-        self.assertEqual(hand_2.get_aces(), 0)
+        self.assertEqual(hand_2.aces(), 0)
     
-    
+    def test_hand_value(self):
+        hand = Hand([Card("S", 3), Card("D", 12)])
+        self.assertEqual(hand.hand_value(), {13})
+
+        cards_list = [Card("S", 1), Card("H", 7), Card("D", 1)]
+        hand_2 = Hand(cards_list)
+        self.assertEqual(hand_2.hand_value(), {9, 19})
+
+        hand_3 = Hand([Card("D", 1), Card("C", 1)])
+        self.assertEqual(hand_3.hand_value(), {2, 12})
 
 
 if __name__ == "__main__":

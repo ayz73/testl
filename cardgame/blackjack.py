@@ -15,6 +15,13 @@ class Card():
         else:
             self.face = None
         
+        if not self.face:
+            self.value = rank
+        elif self.face != "A":
+            self.value = 10
+        else:
+            self.value = 0
+        
     def __str__(self):
         if not self.face:
             return "%s%s" % (self.suit, str(self.rank))
@@ -33,7 +40,8 @@ class Deck():
             for rank in range(1, 14):
                 self.cards.append(Card(suit, rank))
 
-    # td: shuffle
+    def shuffle(self):
+        random.shuffle(self.cards)
     
     # td: hand out
 
@@ -45,15 +53,29 @@ class Hand():
         self.cards = []
         self.cards += cards
     
-    def get_aces(self):
+    def aces(self):
         aces = 0
         for card in self.cards:
             if card.face == "A":
                 aces += 1
         return aces
         
-    def get_value(self):
-        pass
+    def hand_value(self):
+        hand_value = 0
+        for card in self.cards:
+            hand_value += card.value
+
+        all_values = []
+
+        ace_amount = self.aces()
+        if ace_amount == 0:
+            return set([hand_value])
+        else:
+            for i in range(ace_amount):
+                all_values.append(hand_value + ace_amount + i * 10)
+        
+        ed_all_values = [i for i in all_values if i <= 21]
+        return set(ed_all_values)
 
 
 if __name__ == "__main__":
