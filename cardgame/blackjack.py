@@ -1,4 +1,5 @@
 import random
+import sys
 
 class Card():
     
@@ -51,7 +52,7 @@ class Deck():
 
 class Hand():
     
-    def __init__(self, cards):
+    def __init__(self, cards=None):
         self.cards = []
         self.cards += cards
 
@@ -83,5 +84,31 @@ class Hand():
         return set(ed_all_values)
 
 
+def num_check(text):
+    while True:
+        try:
+            num = int(input(text))
+            if num > 0:
+                return num
+            else:
+                print("Please input a positive number...")
+        except ValueError:
+            print("Please input a valid number...")
+            continue
+
+
 if __name__ == "__main__":
-    pass
+    player_count = num_check("How many players would be playing?")
+
+    while True:
+        deck = Deck()
+        
+        dealer = Hand()
+        deck.hand_out(dealer, 2)
+        if dealer.hand_value() == 21:
+            continue
+
+        players = {}
+        for i in range(player_count):
+            players["player_%s" % (i)] = Hand()
+
